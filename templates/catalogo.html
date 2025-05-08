@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de livros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Catálogo de livros</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/catalogo">Catálogo</a>
+            </nav>
+        </header>
+        <a class="botao" href="/adicionar_livro">+ Adicionar Livro</a>
+
+        <table>
+            <tr>
+                <th>Livro</th>
+                <th>Autor</th>
+                <th>Ano</th>
+                <th>Devolver até</th>
+            </tr>
+            {% for livro in livros %}
+            <tr>
+                <td>{{ livro[1] }}</td>
+                <td>{{ livro[2] }}</td>
+                <td>{{ livro[3] }}</td>
+                <td>{{ livro[4] }}</td>
+                <td>
+                    <a class="botao pequeno" href="/editar_livro/{{ livro[0] }}"><img src="./static/img/editar.png" alt="icone de editar" width="20px"></a>
+                    <a class="botao vermelho pequeno" href="/apagar_livro/{{ livro[0] }}">Excluir</a>
+                    <a class="botão verde pequeno" href="/emprestar_livro/{{ livro[0] }}">Emprestar</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+            {% with mensagens = get_flashed_messages() %}
+              {% if mensagens %}
+                <ul class="mensagens">
+                  {% for msg in mensagens %}
+                    <li>{{ msg }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+        </table>
+    </div>
+</body>
+</html>
