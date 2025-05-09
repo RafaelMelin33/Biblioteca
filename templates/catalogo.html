@@ -25,15 +25,18 @@
             </tr>
             {% for livro in livros %}
             <tr>
-                <td>{{ livro[1] }}</td>
-                <td>{{ livro[2] }}</td>
-                <td>{{ livro[3] }}</td>
-                <td>{{ livro[4] }}</td>
+                <td>{{ livro['nome'] }}</td>
+                <td>{{ livro['autor'] }}</td>
+                <td>{{ livro['ano'] }}</td>
+                <td>{{ livro['devolver_ate'] }}</td>
                 <td>
-                    <a class="botao pequeno" href="/editar_livro/{{ livro[0] }}"><img src="./static/img/editar.png" alt="icone de editar" width="20px"></a>
-                    <a class="botao vermelho pequeno" href="/apagar_livro/{{ livro[0] }}">Excluir</a>
-                    <a class="botão verde pequeno" href="/emprestar_livro/{{ livro[0] }}">Emprestar</a>
-
+                    <a class="botao pequeno" href="/editar_livro/{{ loop.index0 }}"><img src="./static/img/editar.png" alt="icone de editar" width="20px"></a>
+                    <a class="botao vermelho pequeno" href="/apagar_livro/{{ loop.index0 }}">Excluir</a>
+                    {% if livros['emprestado'] %}
+                        <a class="botão verde pequeno" href="/devolver_livro/{{ loop.index0 }}">Devolver</a>
+                    {% else %}
+                        <a class="botão verde pequeno" href="/emprestar_livro/{{ loop.index0 }}">Emprestar</a>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

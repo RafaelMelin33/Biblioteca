@@ -9,9 +9,9 @@
     <div class="container">
         <h1>Editar livro</h1>
         <form method="POST">
-            <input type="text" name="nome" value="{{ livro[1] }}" required>
-            <input type="text" name="autor" value="{{ livro[2] }}" required>
-            <input type="number" name="ano" value="{{ livro[3] }}" required>
+            <input type="text" name="nome" value="{{ livro['nome'] }}" required>
+            <input type="text" name="autor" value="{{ livro['autor'] }}" required>
+            <input type="number" name="ano" value="{{ livro['ano'] }}" required>
             <button class="botao cheio" type="submit">Salvar</button>
             <a class="botao cancelar cheio" href="/">Cancelar</a>
         </form>
