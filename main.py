@@ -55,13 +55,17 @@ def emprestar_livro(indice):
         hoje = datetime.now()
         devolver = (hoje + timedelta(days = -7)).strftime("%d/%m/%y")
         livros[indice]['devolver_ate'] = devolver
-        livros[indice]['emprestado'] = True
+    livros[indice]['emprestado'] = True
     return redirect('/catalogo')
 
 @app.route('/devolver_livro/<int:indice>')
 def devolver_livro(indice):
-    if livros[indice]['emprestado'] == True:
+    dias = livros[indice]['devolver_ate']
+    if livros[indice]['emprestado']:
         livros[indice]['emprestado'] = False
+        livros[indice]['devolver_ate'] = ''
+    multa = 10+(1/100*dias)
+    flash(multa)
     return redirect('/catalogo')
 
 if __name__ == '__main__':
