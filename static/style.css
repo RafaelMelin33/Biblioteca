@@ -12,6 +12,26 @@ body {
     padding: 20px;
 }
 
+.apresentacao{
+    text-align: center;
+}
+
+.tipos{
+    display: flex;
+    align-content: space-between;
+}
+
+.tipos div{
+    background-color: lightgray;
+    padding: 50px 20px;
+    border-radius: 20px;
+    margin: 20px auto;
+}
+
+.navHome{
+    margin-left: 100px;
+}
+
 .container {
     max-width: 800px;
     margin: auto;
